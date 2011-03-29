@@ -1,8 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.vectomatic</groupId>
 	<artifactId>lib-gwt-file</artifactId>
-	<version>0.1</version>
+	<version>0.1-SNAPSHOT</version>
 	<description>A GWT encapsulation of the W3C File API</description>
 	<url>http://www.vectomatic.org/lib-gwt-file</url>
 	<licenses>
@@ -12,9 +13,9 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>http://code.google.com/p/lib-gwt-file/source/browse/#svn/lib-gwt-file/tags/0.1</url>
-		<connection>scm:svn:http://lib-gwt-file.googlecode.com/svn/lib-gwt-file/tags/0.1</connection>
-		<developerConnection>scm:svn:file:///home/laaglu/svn/lib-gwt-file/lib-gwt-file/tags/0.1</developerConnection>
+		<url>http://code.google.com/p/lib-gwt-file/source/browse/#svn/lib-gwt-file/trunk</url>
+		<connection>scm:svn:http://lib-gwt-file.googlecode.com/svn/lib-gwt-file/trunk</connection>
+		<developerConnection>scm:svn:file:///home/laaglu/svn/lib-gwt-file/lib-gwt-file/trunk</developerConnection>
 	</scm>
 	<developers>
 		<developer>
