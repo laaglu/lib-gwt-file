@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.vectomatic</groupId>
+	<artifactId>lib-gwt-file</artifactId>
+	<version>0.1-SNAPSHOT</version>
+	<description>A GWT encapsulation of W3C File API</description>
+	<url>http://www.vectomatic.org/lib-gwt-file</url>
+	<licenses>
+		<license>
+			<name>LGPLv3</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+		</license>
+	</licenses>
+	<scm>
+		<url>http://code.google.com/p/lib-gwt-file/source/browse/#svn/lib-gwt-file/trunk</url>
+		<connection>scm:svn:http://lib-gwt-file.googlecode.com/svn/lib-gwt-file/trunk</connection>
+		<developerConnection>scm:svn:file:///home/laaglu/svn/lib-gwt-file/lib-gwt-file/trunk</developerConnection>
+	</scm>
+	<developers>
+		<developer>
+			<id>laaglu</id>
+			<name>Lukas Laag</name>
+			<email>laaglu@gmail.com</email>
+			<url>http://www.vectomatic.org</url>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>1</timezone>
+		</developer>
+	</developers>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<!-- Add java sources to the jar (necessary for GWT) -->
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/java</directory>
+				<includes>
+					<include>**/*.java</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- Build using java 1.6. GWT requires at least Java 1.5 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<!-- Deploy source code in the repository -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Deploy javadoc in the repository -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
