@@ -4,7 +4,7 @@
 	<groupId>org.vectomatic</groupId>
 	<artifactId>lib-gwt-file</artifactId>
 	<version>0.1-SNAPSHOT</version>
-	<description>A GWT encapsulation of W3C File API</description>
+	<description>A GWT encapsulation of the W3C File API</description>
 	<url>http://www.vectomatic.org/lib-gwt-file</url>
 	<licenses>
 		<license>
@@ -98,4 +98,75 @@
 			</plugin>
 		</plugins>
 	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<!-- Lock down to 2.0.1 + no license report because of
+				http://jira.codehaus.org/browse/MPIR-150 -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.0.1</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>index</report>
+							<report>dependencies</report>
+							<report>project-team</report>
+							<report>summary</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.6.1</version>
+				<configuration>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<configuration>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+	<distributionManagement>
+		<repository>
+			<id>${deployment.id}</id>
+			<name>maven repository</name>
+			<url>${deployment.root}/mvn</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>local nexus snapshot repository</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+        <site>
+			<id>${deployment.id}</id>
+			<name>maven site</name>
+			<url>${deployment.root}/mvn-sites/${project.artifactId}</url>
+		</site>
+	</distributionManagement>
+	<profiles>
+		<profile>
+			<id>development</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<deployment.id>local-server</deployment.id>
+				<deployment.root>scp://localhost/var/www/vectomatic</deployment.root>
+			</properties>
+		</profile>
+		<profile>
+			<id>production</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
 </project>
