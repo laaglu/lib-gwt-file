@@ -3,6 +3,7 @@
 	<groupId>org.vectomatic</groupId>
 	<artifactId>lib-gwt-file</artifactId>
 	<version>0.2-SNAPSHOT</version>
+	<name>lib-gwt-file</name>
 	<description>A GWT encapsulation of the W3C File API</description>
 	<url>http://www.vectomatic.org/lib-gwt-file</url>
 	<licenses>
@@ -39,12 +40,12 @@
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>2.2.0</version>
+			<version>2.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
-			<version>2.2.0</version>
+			<version>2.4.0</version>
 		</dependency>
 	</dependencies>
 	<build>
