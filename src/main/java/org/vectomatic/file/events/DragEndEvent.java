@@ -22,6 +22,7 @@ import com.google.gwt.event.dom.client.DomEvent;
 /**
  * This event is fired when the drag operation terminates.
  */
+@Deprecated
 public class DragEndEvent extends DragEventBase<DragEndHandler> {
 	private static final Type<DragEndHandler> TYPE = new Type<DragEndHandler>(
 			"dragend", new DragEndEvent());

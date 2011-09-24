@@ -17,22 +17,21 @@
  **********************************************/
 package org.vectomatic.dnd;
 
-import org.vectomatic.file.events.DragEnterEvent;
-import org.vectomatic.file.events.DragEnterHandler;
-import org.vectomatic.file.events.DragLeaveEvent;
-import org.vectomatic.file.events.DragLeaveHandler;
-import org.vectomatic.file.events.DragOverEvent;
-import org.vectomatic.file.events.DragOverHandler;
-import org.vectomatic.file.events.DropEvent;
-import org.vectomatic.file.events.DropHandler;
-import org.vectomatic.file.events.HasDragEnterHandlers;
-import org.vectomatic.file.events.HasDragLeaveHandlers;
-import org.vectomatic.file.events.HasDragOverHandlers;
-import org.vectomatic.file.events.HasDropHandlers;
-
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.DomEvent;
+import com.google.gwt.event.dom.client.DragEnterEvent;
+import com.google.gwt.event.dom.client.DragEnterHandler;
+import com.google.gwt.event.dom.client.DragLeaveEvent;
+import com.google.gwt.event.dom.client.DragLeaveHandler;
+import com.google.gwt.event.dom.client.DragOverEvent;
+import com.google.gwt.event.dom.client.DragOverHandler;
+import com.google.gwt.event.dom.client.DropEvent;
+import com.google.gwt.event.dom.client.DropHandler;
+import com.google.gwt.event.dom.client.HasDragEnterHandlers;
+import com.google.gwt.event.dom.client.HasDragLeaveHandlers;
+import com.google.gwt.event.dom.client.HasDragOverHandlers;
+import com.google.gwt.event.dom.client.HasDropHandlers;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;

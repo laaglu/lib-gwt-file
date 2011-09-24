@@ -22,7 +22,7 @@ import org.vectomatic.file.impl.FileListImpl;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 
-public class DataTransferImpl extends JavaScriptObject {
+@Deprecated public class DataTransferImpl extends JavaScriptObject {
 	protected DataTransferImpl() {
 	}
 	public final native String getDropEffect() /*-{

@@ -22,6 +22,7 @@ import com.google.gwt.event.shared.EventHandler;
 /**
  * Handler interface for {@link DropEvent} events.
  */
+@Deprecated
 public interface DropHandler extends EventHandler {
 	/**
 	 * Called when 'drop' is fired.

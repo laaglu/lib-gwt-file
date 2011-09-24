@@ -2,7 +2,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.vectomatic</groupId>
 	<artifactId>lib-gwt-file</artifactId>
-	<version>0.2-SNAPSHOT</version>
+	<version>0.2</version>
+	<name>lib-gwt-file</name>
 	<description>A GWT encapsulation of the W3C File API</description>
 	<url>http://www.vectomatic.org/lib-gwt-file</url>
 	<licenses>
@@ -12,9 +13,9 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>http://code.google.com/p/lib-gwt-file/source/browse/#svn/lib-gwt-file/trunk</url>
-		<connection>scm:svn:http://lib-gwt-file.googlecode.com/svn/lib-gwt-file/trunk</connection>
-		<developerConnection>scm:svn:file:///home/laaglu/svn/lib-gwt-file/lib-gwt-file/trunk</developerConnection>
+		<url>http://code.google.com/p/lib-gwt-file/source/browse/#svn/lib-gwt-file/tags/0.2</url>
+		<connection>scm:svn:http://lib-gwt-file.googlecode.com/svn/lib-gwt-file/tags/0.2</connection>
+		<developerConnection>scm:svn:file:///home/laaglu/svn/lib-gwt-file/lib-gwt-file/tags/0.2</developerConnection>
 	</scm>
 	<developers>
 		<developer>
@@ -39,12 +40,12 @@
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>2.2.0</version>
+			<version>2.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
-			<version>2.2.0</version>
+			<version>2.4.0</version>
 		</dependency>
 	</dependencies>
 	<build>

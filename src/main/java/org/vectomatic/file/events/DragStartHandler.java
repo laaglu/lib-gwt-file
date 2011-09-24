@@ -22,6 +22,7 @@ import com.google.gwt.event.shared.EventHandler;
 /**
  * Handler interface for {@link DragStartEvent} events.
  */
+@Deprecated
 public interface DragStartHandler extends EventHandler {
 	/**
 	 * Called when 'dragstart' is fired.

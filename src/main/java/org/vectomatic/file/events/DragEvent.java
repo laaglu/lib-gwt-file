@@ -22,6 +22,7 @@ import com.google.gwt.event.dom.client.DomEvent;
 /**
  * This event is fired when the drag session is in progress.
  */
+@Deprecated
 public class DragEvent extends DragEventBase<DragHandler> {
 	private static final Type<DragHandler> TYPE = new Type<DragHandler>(
 			"drag", new DragEvent());

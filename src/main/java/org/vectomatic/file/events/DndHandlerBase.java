@@ -17,6 +17,7 @@
  **********************************************/
 package org.vectomatic.file.events;
 
+@Deprecated
 public class DndHandlerBase implements DragStartHandler, DragEndHandler, DragEnterHandler, DragLeaveHandler, DragHandler, DragOverHandler, DropHandler {
 
 	@Override
