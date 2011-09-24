@@ -17,7 +17,7 @@
  **********************************************/
 package org.vectomatic.file.events;
 
-import org.vectomatic.dnd.DataTransfer;
+import org.vectomatic.dnd.DataTransferExt;
 import org.vectomatic.dnd.impl.DataTransferImpl;
 
 import com.google.gwt.dom.client.NativeEvent;
@@ -27,9 +27,10 @@ import com.google.gwt.event.shared.EventHandler;
 /**
  * Base class for all drag and drop events
  */
+@Deprecated
 public abstract class DragEventBase<H extends EventHandler> extends MouseEvent<H> {
-	public DataTransfer getDataTransfer() {
-		return new DataTransfer(getDataTransfer(getNativeEvent()));
+	public DataTransferExt getDataTransfer() {
+		return null;
 	}
 	private static native DataTransferImpl getDataTransfer(NativeEvent event) /*-{
       return event.dataTransfer;

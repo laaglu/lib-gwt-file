@@ -22,6 +22,7 @@ import com.google.gwt.event.dom.client.DomEvent;
 /**
  * This event is fired when the mouse pointer enters a drop target.
  */
+@Deprecated
 public class DragEnterEvent extends DragEventBase<DragEnterHandler> {
 	private static final Type<DragEnterHandler> TYPE = new Type<DragEnterHandler>(
 			"dragenter", new DragEnterEvent());

@@ -24,6 +24,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A widget that implements this interface provides registration for
  * {@link DropHandler} instances.
  */
+@Deprecated
 public interface HasDropHandlers extends HasHandlers {
 	/**
 	 * Adds a {@link DropHandler} handler.

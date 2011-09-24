@@ -23,7 +23,7 @@ import org.vectomatic.file.FileList;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.UIObject;
 
-public class DataTransfer {
+@Deprecated public class DataTransfer {
 	protected DataTransferImpl impl;
 	public DataTransfer(DataTransferImpl impl) {
 		this.impl = impl;

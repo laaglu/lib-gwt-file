@@ -22,6 +22,7 @@ import com.google.gwt.event.dom.client.DomEvent;
 /**
  * This event is fired when a drop event finally occurs.
  */
+@Deprecated
 public class DropEvent extends DragEventBase<DropHandler> {
 	private static final Type<DropHandler> TYPE = new Type<DropHandler>(
 			"drop", new DropEvent());

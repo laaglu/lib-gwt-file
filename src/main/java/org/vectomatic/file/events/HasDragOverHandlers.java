@@ -24,6 +24,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A widget that implements this interface provides registration for
  * {@link DragOverHandler} instances.
  */
+@Deprecated
 public interface HasDragOverHandlers extends HasHandlers {
 	/**
 	 * Adds a {@link DragOverHandler} handler.

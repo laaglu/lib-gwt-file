@@ -22,6 +22,7 @@ import com.google.gwt.event.dom.client.DomEvent;
 /**
  * This event is fired when the mouse pointer leaves a drop target.
  */
+@Deprecated
 public class DragLeaveEvent extends DragEventBase<DragLeaveHandler> {
 	private static final Type<DragLeaveHandler> TYPE = new Type<DragLeaveHandler>(
 			"dragleave", new DragLeaveEvent());
