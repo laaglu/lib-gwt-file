@@ -17,8 +17,8 @@
  **********************************************/
 package org.vectomatic.file.impl;
 
+import org.vectomatic.arrays.ArrayBuffer;
 import org.vectomatic.file.Blob;
-import org.vectomatic.file.File;
 import org.vectomatic.file.FileError;
 import org.vectomatic.file.FileReader;
 
@@ -37,11 +37,17 @@ public class FileReaderImpl extends JavaScriptObject {
 	public final native short getReadyState() /*-{
       return this.readyState;
 	}-*/; 
-	public final native String getResult() /*-{
+	public final native String getStringResult() /*-{
       return this.result;
+	}-*/; 
+	public final native ArrayBuffer getArrayBufferResult() /*-{
+    return this.result;
 	}-*/; 
 	public final native FileError getError() /*-{
       return this.error;
+	}-*/; 
+	public final native void abort() /*-{
+	  this.abort();
 	}-*/; 
 	public final native void readAsBinaryString(Blob fileBlob) /*-{
 	  this.readAsBinaryString(fileBlob);
@@ -52,8 +58,11 @@ public class FileReaderImpl extends JavaScriptObject {
 	public final native void readAsText(Blob fileBlob, String encoding) /*-{
 	  this.readAsText(fileBlob, encoding);
 	}-*/; 
-	public final native void readAsDataURL(File file) /*-{
+	public final native void readAsDataURL(Blob fileBlob) /*-{
 	  this.readAsDataURL(file);
+	}-*/;
+	public final native void readAsArrayBuffer(Blob fileBlob) /*-{
+	  this.readAsArrayBuffer(file);
 	}-*/;
 	public final native void registerEvent(FileReader reader, String eventType) /*-{
 	    var x = this;

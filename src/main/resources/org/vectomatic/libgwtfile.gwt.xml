@@ -6,4 +6,5 @@
 	<inherits name='com.google.gwt.xml.XML' />
 	<source path="file" />
 	<source path="dnd" />
+	<source path="arrays" />
 </module>

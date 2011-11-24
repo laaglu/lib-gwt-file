@@ -42,25 +42,40 @@ public class FileUploadExt extends FileUpload {
 		super();
 		setMultiple(multiple);
 	}
-	
+	/**
+	 * Returns true if support for multiple file upload is activated, false otherwise.
+	 * @return true if support for multiple file upload is activated
+	 */
 	public boolean isMultiple() {
 		return isMultiple(getElement());
 	}
 	private static final native boolean isMultiple(Element element) /*-{
 	  return element.multiple;
-	}-*/; 
+	}-*/;
+	
+	/**
+	 * Sets support for multiple file upload.
+	 * @param value true to activate support for multiple file upload, false otherwise.
+	 */
 	public void setMultiple(boolean value) {
 		setMultiple(getElement(), value);
 	} 
 	private static final native void setMultiple(Element element, boolean value) /*-{
 	  element.multiple = value;
 	}-*/; 
+	/**
+	 * Returns the files selected by the end-user.
+	 * @return the files selected by the end-user.
+	 */
 	public FileList getFiles() {
 		return new FileList(getFiles(getElement()));
 	}
 	private static final native FileListImpl getFiles(Element element) /*-{
 	  return element.files;
-	}-*/; 
+	}-*/;
+	/**
+	 * Shows the file selection box.
+	 */
 	public void click() {
 		click(getElement());
 	}

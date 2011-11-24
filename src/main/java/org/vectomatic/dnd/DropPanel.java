@@ -19,6 +19,7 @@ package org.vectomatic.dnd;
 
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
+import com.google.gwt.dom.client.Node;
 import com.google.gwt.event.dom.client.DomEvent;
 import com.google.gwt.event.dom.client.DragEnterEvent;
 import com.google.gwt.event.dom.client.DragEnterHandler;
@@ -38,6 +39,10 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.SimplePanel;
 
+/**
+ * A widget which accepts file drag and drop.
+ * @author laaglu
+ */
 public class DropPanel extends SimplePanel implements HasDropHandlers, HasDragEnterHandlers, HasDragLeaveHandlers, HasDragOverHandlers {
 	/**
 	 * The event bus shared by all drop panels
@@ -63,6 +68,9 @@ public class DropPanel extends SimplePanel implements HasDropHandlers, HasDragEn
 		DropPanel.eventBus = eventBus;
 	}
 	
+	/**
+	 * Constructor. The size of the widget should be set using CSS.
+	 */
 	public DropPanel() {
 		super();
 		setup(getElement());
@@ -98,10 +106,39 @@ public class DropPanel extends SimplePanel implements HasDropHandlers, HasDragEn
 	 * @param event The event to dispatch
 	 */
 	public void dispatch(NativeEvent event) {
+		// dragenter and dragleave deserve special treatment
+		// to solve issues described in:
+		// http://www.quirksmode.org/js/events_mouse.html
+		if ("dragenter".equals(event.getType())
+		 || "dragleave".equals(event.getType())) {
+			if (isChildOf((Node)event.getCurrentEventTarget().cast(), (Node)event.getRelatedEventTarget().cast())) {
+				return;
+			}
+		}
 		// This call wraps the native event into a DomEvent
 		// and invokes fireEvent
 	    DomEvent.fireNativeEvent(event, this, (Element)event.getCurrentEventTarget().cast());
 	}
+	
+	/**
+	 * Tests if a node is part of a DOM subtree.  
+	 * @param root
+	 * The subtree root
+	 * @param node
+	 * The node to be tested
+	 * @return
+	 * True if the node is part of the subtree, false otherwise
+	 */
+	protected native boolean isChildOf(Node root, Node node) /*-{
+		while (node != null && node != root && node.nodeName != 'BODY') {
+			node= node.parentNode
+		}
+		if (node === root) {
+			return true;
+		}
+		return false;
+	}-*/;
+
 	
 	@Override
 	public HandlerRegistration addDropHandler(DropHandler handler) {

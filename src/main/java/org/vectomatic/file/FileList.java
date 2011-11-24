@@ -15,19 +15,49 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with lib-gwt-file.  If not, see http://www.gnu.org/licenses/
  **********************************************/
+/**
+ * Documentation is adapted from W3C spec and content available from
+ * http://developer.mozilla.org under http://creativecommons.org/licenses/by-sa/2.5/
+ */
 package org.vectomatic.file;
 
 import java.util.Iterator;
 
 import org.vectomatic.file.impl.FileListImpl;
 
+/**
+ * An object of this type is returned by the files property of the HTML input element; 
+ * this lets you access the list of files selected with the &lt;input type="file"&gt; element. 
+ * It's also used for a list of files dropped into web content when using the drag and drop API; 
+ * see the {@link org.vectomatic.dnd.DataTransferExt} object for details on this usage.
+ */
 public class FileList implements Iterable<File> {
 	private FileListImpl impl;
 	
+	/**
+	 * Constructor. Do not call this constructor directly
+	 * new FileList are generated automatically where needed in the API.
+	 * @param impl the underlying implementation object.
+	 */
 	public FileList(FileListImpl impl) {
 		this.impl = impl;
 	}
 	
+	  /**
+	   * Returns an iterator over the {@link org.vectomatic.file.File}
+	   * elements in this list in proper sequence.
+	   *
+	   * <p>This implementation returns a straightforward implementation of the
+	   * iterator interface, relying on the backing list's {@code getLength()},
+	   * and {@code getItem(int)} methods.
+	   *
+	   * <p>Note that the iterator returned by this method will throw an
+	   * {@code UnsupportedOperationException} in response to its
+	   * {@code remove} method.
+	   *
+	   * @return an iterator over the {@link org.vectomatic.file.File}
+	   * elements in this list in proper sequence
+	   */
 	@Override
 	public Iterator<File> iterator() {
 		return new Iterator<File>() {

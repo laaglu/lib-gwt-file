@@ -17,8 +17,19 @@
  **********************************************/
 package org.vectomatic.file;
 
+import org.vectomatic.arrays.ArrayBuffer;
+
 import com.google.gwt.core.client.JavaScriptObject;
 
+/**
+ * The {@link org.vectomatic.file.FileReaderSync} interface allows to read
+ * {@link org.vectomatic.file.File} or {@link org.vectomatic.file.Blob} objects
+ * in a synchronous way.
+ * 
+ * This interface is only available in workers as it enables synchronous I/O
+ * that could potentially block.
+ * 
+ */
 public class FileReaderSync extends JavaScriptObject {
 	protected FileReaderSync() {
 	}
@@ -31,8 +42,11 @@ public class FileReaderSync extends JavaScriptObject {
 	public final native String readAsText(Blob fileBlob, String encoding) /*-{
 	  return this.readAsText(fileBlob, encoding);
 	}-*/; 
-	public final native String readAsDataURL(File file) /*-{
-	  return this.readAsDataURL(file);
+	public final native String readAsDataURL(Blob fileBlob) /*-{
+	  return this.readAsDataURL(fileBlob);
+	}-*/; 
+	public final native ArrayBuffer readAsArrayBuffer(Blob fileBlob) /*-{
+	  return this.readAsArrayBuffer(fileBlob);
 	}-*/; 
 
 }

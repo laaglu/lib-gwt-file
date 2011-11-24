@@ -15,8 +15,13 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with lib-gwt-file.  If not, see http://www.gnu.org/licenses/
  **********************************************/
+/**
+ * Documentation is adapted from W3C spec and content available from
+ * http://developer.mozilla.org under http://creativecommons.org/licenses/by-sa/2.5/
+ */
 package org.vectomatic.file;
 
+import org.vectomatic.arrays.ArrayBuffer;
 import org.vectomatic.file.events.AbortEvent;
 import org.vectomatic.file.events.AbortHandler;
 import org.vectomatic.file.events.ErrorEvent;
@@ -46,18 +51,46 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Element;
 
+/**
+ * The {@link org.vectomatic.file.FileReader} object lets web applications
+ * asynchronously read the contents of files (or raw data buffers) stored on the
+ * user's computer, using {@link org.vectomatic.file.File} or
+ * {@link org.vectomatic.file.Blob} objects to specify the file or data to read.
+ * File objects may be obtained in one of two ways: from a FileList object
+ * returned as a result of a user selecting files using the &lt;input&gt; element, or
+ * from a drag and drop operation's {@link org.vectomatic.dnd.DataTransferExt}
+ * object.
+ * 
+ * To create a {@link org.vectomatic.file.FileReader}, simply do the following:
+ * 
+ * <pre>
+ * FileReader reader = new FileReader();
+ * </pre>
+ */
 public class FileReader implements HasLoadHandlers, HasLoadStartHandlers, HasLoadEndHandlers, HasAbortHandlers, HasProgressHandlers, HasErrorHandlers {
+	/**
+	 * Enum to represent FileReader state constants.
+	 */
 	public enum State {
+		/**
+		 * No data has been loaded yet.
+		 */
 		EMPTY {
 			public short getValue() {
 				return FileReaderImpl.EMPTY;
 			}
 		},
+		/**
+		 * Data is currently being loaded.
+		 */
 		LOADING {
 			public short getValue() {
 				return FileReaderImpl.LOADING;
 			}
 		},
+		/**
+		 * The entire read request has been completed.
+		 */
 		DONE {
 			public short getValue() {
 				return FileReaderImpl.DONE;
@@ -79,30 +112,154 @@ public class FileReader implements HasLoadHandlers, HasLoadStartHandlers, HasLoa
 	}
 	private FileReaderImpl impl;
 	static protected EventBus eventBus = new SimpleEventBus();
+	
+	/**
+	 * Constructor.
+	 */
 	public FileReader() {
 		impl = FileReaderImpl.newInstance();
 	}
+
+	/**
+	 * Indicates the state of the FileReader. This will be one of the
+	 * {@link org.vectomatic.file.FileReader.State} constants. Read only.
+	 * 
+	 * @return the state of the FileReader
+	 */
 	public State getReadyState() { 
 		return State.fromValue(impl.getReadyState());
 	}
-	public String getResult() { 
-		return impl.getResult();
+
+	/**
+	 * Returns the file's contents. This method should only be called after the
+	 * read operation is complete, and the format of the data depends on which
+	 * of the methods was used to initiate the read operation (one of:
+	 * {@link #readAsBinaryString(org.vectomatic.file.Blob)},
+	 * {@link #readAsText(org.vectomatic.file.Blob)},
+	 * {@link #readAsText(org.vectomatic.file.Blob, java.lang.String)} or
+	 * {@link #readAsDataURL(org.vectomatic.file.Blob)}).
+	 * 
+	 * @return the file's contents
+	 */
+	public String getStringResult() { 
+		return impl.getStringResult();
+	}
+
+	/**
+	 * Returns the file's contents. This method should only be called after the
+	 * read operation (triggered by
+	 * {@link #readAsArrayBuffer(org.vectomatic.file.Blob)}) is
+	 * complete.
+	 * 
+	 * @return the file's contents
+	 */
+	public ArrayBuffer getArrayBufferResult() { 
+		return impl.getArrayBufferResult();
 	}
 	public FileError getError() { 
 		return impl.getError();
 	}
+	
+	/**
+	 * Aborts the read operation. Upon return, the readyState will be
+	 * {@link org.vectomatic.file.FileReader.State#DONE}.
+	 */
+	public void abort() {
+		impl.abort();
+	}
+
+	/**
+	 * Starts reading the contents of the specified
+	 * {@link org.vectomatic.file.Blob}, which may be a
+	 * {@link org.vectomatic.file.File}. When the read operation is finished,
+	 * the {@link #getReadyState()} will become
+	 * {@link org.vectomatic.file.FileReader.State#DONE}, and the
+	 * {@link org.vectomatic.file.events.LoadEndEvent} event, if any, will be
+	 * fired. At that time, the {@link #getStringResult()} provides access to
+	 * the raw binary data from the file.
+	 * 
+	 * @param fileBlob
+	 *            The DOM {@link org.vectomatic.file.Blob} or
+	 *            {@link org.vectomatic.file.File} from which to read.
+	 */
 	public void readAsBinaryString(Blob fileBlob) { 
 		impl.readAsBinaryString(fileBlob);
 	}
+	/**
+	 * Starts reading the contents of the specified
+	 * {@link org.vectomatic.file.Blob}, which may be a
+	 * {@link org.vectomatic.file.File}. When the read operation is finished,
+	 * the {@link #getReadyState()} will become
+	 * {@link org.vectomatic.file.FileReader.State#DONE}, and the
+	 * {@link org.vectomatic.file.events.LoadEndEvent} event, if any, will be
+	 * fired. At that time, the {@link #getStringResult()} provides access to
+	 * the contents of the file as a text string.
+	 * 
+	 * @param fileBlob
+	 *            The DOM {@link org.vectomatic.file.Blob} or
+	 *            {@link org.vectomatic.file.File} from which to read.
+	 */
 	public void readAsText(Blob fileBlob) { 
 		impl.readAsText(fileBlob);
 	}
+
+	/**
+	 * Starts reading the contents of the specified
+	 * {@link org.vectomatic.file.Blob}, which may be a
+	 * {@link org.vectomatic.file.File}. When the read operation is finished,
+	 * the {@link #getReadyState()} will become
+	 * {@link org.vectomatic.file.FileReader.State#DONE}, and the
+	 * {@link org.vectomatic.file.events.LoadEndEvent} event, if any, will be
+	 * fired. At that time, the {@link #getStringResult()} provides access to
+	 * the contents of the file as a text string.
+	 * 
+	 * @param fileBlob
+	 *            The DOM {@link org.vectomatic.file.Blob} or
+	 *            {@link org.vectomatic.file.File} from which to read.
+	 * @param encoding
+	 *            A string indicating the encoding to use for the returned data.
+	 *            By default, UTF-8 is assumed if this parameter is not
+	 *            specified.
+	 */
 	public void readAsText(Blob fileBlob, String encoding) { 
 		impl.readAsText(fileBlob, encoding);
 	}
-	public void readAsDataURL(File file) { 
-		impl.readAsDataURL(file);
+	/**
+	 * Starts reading the contents of the specified
+	 * {@link org.vectomatic.file.Blob}, which may be a
+	 * {@link org.vectomatic.file.File}. When the read operation is finished,
+	 * the {@link #getReadyState()} will become
+	 * {@link org.vectomatic.file.FileReader.State#DONE}, and the
+	 * {@link org.vectomatic.file.events.LoadEndEvent} event, if any, will be
+	 * fired. At that time, the {@link #getStringResult()} provides access to
+	 * the contents of the file as a data: URL representing the file's data.
+	 * 
+	 * @param fileBlob
+	 *            The DOM {@link org.vectomatic.file.Blob} or
+	 *            {@link org.vectomatic.file.File} from which to read.
+	 */
+	public void readAsDataURL(Blob fileBlob) { 
+		impl.readAsDataURL(fileBlob);
 	}
+	
+	/**
+	 * Starts reading the contents of the specified
+	 * {@link org.vectomatic.file.Blob}, which may be a
+	 * {@link org.vectomatic.file.File}. When the read operation is finished,
+	 * the {@link #getReadyState()} will become
+	 * {@link org.vectomatic.file.FileReader.State#DONE}, and the
+	 * {@link org.vectomatic.file.events.LoadEndEvent} event, if any, will be
+	 * fired. At that time, the {@link #getStringResult()} provides access to
+	 * an {@link org.vectomatic.arrays.ArrayBuffer} representing the file's data.
+	 * 
+	 * @param fileBlob
+	 *            The DOM {@link org.vectomatic.file.Blob} or
+	 *            {@link org.vectomatic.file.File} from which to read.
+	 */
+	public void readAsArrayBuffer(Blob fileBlob) { 
+		impl.readAsArrayBuffer(fileBlob);
+	}
+
 	/**
 	 * Dispatches the specified event to this node
 	 * event handlers
