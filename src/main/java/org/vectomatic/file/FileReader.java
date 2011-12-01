@@ -129,6 +129,16 @@ public class FileReader implements HasLoadHandlers, HasLoadStartHandlers, HasLoa
 	public State getReadyState() { 
 		return State.fromValue(impl.getReadyState());
 	}
+	
+	/**
+	 * @deprecated As of version 0.3, users should use the {@link #getStringResult()}
+	 * or {@link #getArrayBufferResult()} depending on the kind of return which is
+	 * expected.
+	 * @return the file's contents
+	 */
+	public String getResult() {
+		return getStringResult();
+	}
 
 	/**
 	 * Returns the file's contents. This method should only be called after the
