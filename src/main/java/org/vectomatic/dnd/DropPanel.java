@@ -41,6 +41,11 @@ import com.google.gwt.user.client.ui.SimplePanel;
 
 /**
  * A widget which accepts file drag and drop.
+ * <i>Note: users must add a handler for ALL four main
+ * events (dragenter, dragleave, dragover and drop) to prevent
+ * the default browser behavior from applying, otherwise dropping
+ * will result in the browser opening a new page with the dropped
+ * resource.</i>
  * @author laaglu
  */
 public class DropPanel extends SimplePanel implements HasDropHandlers, HasDragEnterHandlers, HasDragLeaveHandlers, HasDragOverHandlers {
