@@ -15,22 +15,123 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with lib-gwt-file.  If not, see http://www.gnu.org/licenses/
  **********************************************/
+/**
+ * Documentation is adapted from W3C spec and content available from
+ * http://developer.mozilla.org under http://creativecommons.org/licenses/by-sa/2.5/
+ */
 package org.vectomatic.file;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
+/**
+ * A Blob object represents a file-like object of raw data. It's used to
+ * represent data that isn't necessarily in a JavaScript-native format. The
+ * {@link org.vectomatic.file.File} interface is based on it, inheriting the
+ * Blob's functionality and expanding it to support files on the user's system.
+ */
 public class Blob extends JavaScriptObject {
 	protected Blob() {
 	}
+
+	/**
+	 * The size, in bytes, of the data contained in the Blob object.
+	 * 
+	 * @return The size, in bytes, of the data contained in the Blob object.
+	 */
 	public final native int getSize() /*-{
       return this.size;
-	}-*/; 
-	public final native Blob slice(int start, int length) /*-{
-      return this.slice(start, length);
-	}-*/; 
+	}-*/;
+	
+	/**
+	 * An ASCII-encoded string, in all lower case, indicating the MIME type of
+	 * the data contained in the Blob. If the type is unknown, this string is
+	 * empty.
+	 * 
+	 * @return The MIME type of the data contained in the Blob
+	 */
+	public final native String getType() /*-{
+      return this.type;
+	}-*/;
+	
+	/**
+	 * Returns a new Blob object containing the data in the specified range of
+	 * bytes of the source Blob.
+	 * 
+	 * @param start
+	 *            An index into the Blob indicating the first byte to copy into
+	 *            the new Blob. If you specify a negative value, it's treated as
+	 *            an offset from the end of the string toward the beginning (for
+	 *            example, -10 would be the 10th from last byte in the Blob).
+	 * @return The new Blob object
+	 */
+	public final native Blob slice(int start) /*-{
+      return this.slice(start);
+	}-*/;
+	
+	/**
+	 * Returns a new Blob object containing the data in the specified range of
+	 * bytes of the source Blob.
+	 * 
+	 * @param start
+	 *            An index into the Blob indicating the first byte to copy into
+	 *            the new Blob. If you specify a negative value, it's treated as
+	 *            an offset from the end of the string toward the beginning (for
+	 *            example, -10 would be the 10th from last byte in the Blob).
+	 * @param end
+	 *            An index into the Blob indicating the last byte to copy into
+	 *            the new Blob. If you specify a negative value, it's treated as
+	 *            an offset from the end of the string toward the beginning (for
+	 *            example, -10 would be the 10th from last byte in the Blob).
+	 * @return The new Blob object
+	 */
+	public final native Blob slice(int start, int end) /*-{
+      return this.slice(start, end);
+	}-*/;
+	
+	/**
+	 * Returns a new Blob object containing the data in the specified range of
+	 * bytes of the source Blob.
+	 * 
+	 * @param start
+	 *            An index into the Blob indicating the first byte to copy into
+	 *            the new Blob. If you specify a negative value, it's treated as
+	 *            an offset from the end of the string toward the beginning (for
+	 *            example, -10 would be the 10th from last byte in the Blob).
+	 * @param end
+	 *            An index into the Blob indicating the last byte to copy into
+	 *            the new Blob. If you specify a negative value, it's treated as
+	 *            an offset from the end of the string toward the beginning (for
+	 *            example, -10 would be the 10th from last byte in the Blob).
+	 * @param contentType
+	 *            The content type to assign to the new Blob; this will be the
+	 *            value of its type property.
+	 * @return The new Blob object
+	 */
+	public final native Blob slice(int start, int end, String contentType) /*-{
+      return this.slice(start, end, contentType);
+	}-*/;
+
+	/**
+	 * Creates a new object URL, whose lifetime is tied to the document in the
+	 * window on which it was created. The new object URL represents this
+	 * specified Blob object.
+	 * 
+	 * @return a new object URL representing this blob.
+	 */
 	public final native String createObjectURL() /*-{
 	  return $wnd.URL.createObjectURL(this);
 	}-*/;
+
+	/**
+	 * Releases an existing object URL which was previously created by calling
+	 * {@link #createObjectURL()} . Call this method when you've finished using
+	 * a object URL, in order to let the browser know it doesn't need to keep
+	 * the reference to the file any longer.
+	 * 
+	 * @param url
+	 *            a string representing the object URL that was created by
+	 *            calling {@link #createObjectURL()}
+	 */
 	public final native void revokeObjectURL(String url) /*-{
 	  $wnd.URL.revokeObjectURL(url);
 	}-*/;

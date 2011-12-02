@@ -19,14 +19,24 @@ package org.vectomatic.file;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
+/**
+ * Represents an error that occurs while using the
+ * {@link org.vectomatic.file.FileReader} interface.
+ */
 public class FileError extends JavaScriptObject {
-	 
+	/**
+	 * Constructor.
+	 */
 	protected FileError() {
 	}
+	/**
+	 * Returns a constant representing the error code in Java.
+	 * @return a constant representing the error code in Java.
+	 */
 	public final ErrorCode getCode() {
-    return ErrorCode.fromValue(getCode_());
-	} 
-	public final native short getCode_() /*-{
+      return ErrorCode.fromValue(getCode_());
+	}
+	private final native short getCode_() /*-{
       return this.code;
 	}-*/; 
 }

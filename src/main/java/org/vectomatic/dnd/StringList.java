@@ -34,6 +34,11 @@ import java.util.Iterator;
 import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.JavaScriptObject;
 
+/**
+ * Class to store the mime types specifying the contents of
+ * a {@link org.vectomatic.dnd.DataTransferExt} object.
+ * @author laaglu
+ */
 public class StringList implements Iterable<String> {
   private JavaScriptObject ot;
   protected StringList(JavaScriptObject ot) {
