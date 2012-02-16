@@ -59,10 +59,10 @@ public class FileReaderImpl extends JavaScriptObject {
 	  this.readAsText(fileBlob, encoding);
 	}-*/; 
 	public final native void readAsDataURL(Blob fileBlob) /*-{
-	  this.readAsDataURL(file);
+	  this.readAsDataURL(fileBlob);
 	}-*/;
 	public final native void readAsArrayBuffer(Blob fileBlob) /*-{
-	  this.readAsArrayBuffer(file);
+	  this.readAsArrayBuffer(fileBlob);
 	}-*/;
 	public final native void registerEvent(FileReader reader, String eventType) /*-{
 	    var x = this;
