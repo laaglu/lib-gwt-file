@@ -1,8 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.vectomatic</groupId>
+	<parent>
+		<groupId>org.vectomatic</groupId>
+		<artifactId>vectomatic-parent</artifactId>
+		<version>0.1</version>
+	</parent>
 	<artifactId>lib-gwt-file</artifactId>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.3.1-SNAPSHOT</version>
 	<name>lib-gwt-file</name>
 	<description>A GWT encapsulation of the W3C File API</description>
 	<url>http://www.vectomatic.org/lib-gwt-file</url>
@@ -17,35 +21,19 @@
 		<connection>scm:svn:http://lib-gwt-file.googlecode.com/svn/lib-gwt-file/trunk</connection>
 		<developerConnection>scm:svn:file:///home/laaglu/svn/lib-gwt-file/lib-gwt-file/trunk</developerConnection>
 	</scm>
-	<developers>
-		<developer>
-			<id>laaglu</id>
-			<name>Lukas Laag</name>
-			<email>laaglu@gmail.com</email>
-			<url>http://www.vectomatic.org</url>
-			<roles>
-				<role>architect</role>
-				<role>developer</role>
-			</roles>
-			<timezone>1</timezone>
-		</developer>
-	</developers>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>2.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
-			<version>2.4.0</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -61,104 +49,8 @@
 				<directory>${basedir}/src/main/resources</directory>
 			</resource>
 		</resources>
-		<plugins>
-			<!-- Build using java 1.6. GWT requires at least Java 1.5 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-			<!-- Deploy source code in the repository -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- Deploy javadoc in the repository -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
 	</build>
-	<reporting>
-		<plugins>
-			<plugin>
-				<!-- Lock down to 2.0.1 + no license report because of
-				http://jira.codehaus.org/browse/MPIR-150 -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.0.1</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>index</report>
-							<report>dependencies</report>
-							<report>project-team</report>
-							<report>summary</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.6.1</version>
-				<configuration>
-					<aggregate>true</aggregate>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<configuration>
-					<aggregate>true</aggregate>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
 	<distributionManagement>
 		<downloadUrl>http://www.vectomatic.org/libs/lib-gwt-file</downloadUrl>
 	</distributionManagement>
-	<profiles>
-		<!-- ==========================================
-		 Profiles to deploy to your own environment. Define
-		 the associated properties in your settings.xml to
-		 describe the server you want to deploy to.
-		 ==============================================-->
-		<profile>
-			<id>deployment-local</id>
-			<distributionManagement>
-				<repository>
-					<id>${vectomatic.release.id}</id>
-					<url>${vectomatic.release.url}</url>
-				</repository>
-				<snapshotRepository>
-					<id>${vectomatic.snapshots.id}</id>
-					<url>${vectomatic.snapshots.url}</url>
-				</snapshotRepository>
-				<site>
-					<id>${vectomatic.site.id}</id>
-					<url>${vectomatic.site.url}</url>
-				</site>
-			</distributionManagement>
-		</profile>
-	</profiles>
 </project>

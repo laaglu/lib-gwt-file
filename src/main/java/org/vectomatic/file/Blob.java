@@ -21,6 +21,9 @@
  */
 package org.vectomatic.file;
 
+import org.vectomatic.file.impl.SliceImpl;
+
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
@@ -30,6 +33,18 @@ import com.google.gwt.core.client.JavaScriptObject;
  * Blob's functionality and expanding it to support files on the user's system.
  */
 public class Blob extends JavaScriptObject {
+	private static SliceImpl sliceImpl;
+	/**
+	 * Temporary fix because the File API slice methods are currently prefixed.
+	 * @return An implementation of the slice methods
+	 */
+	private static final SliceImpl getSliceImpl() {
+		if (sliceImpl == null) {
+			sliceImpl = GWT.create(SliceImpl.class);
+		}
+		return sliceImpl;
+	}
+	
 	protected Blob() {
 	}
 
@@ -54,6 +69,16 @@ public class Blob extends JavaScriptObject {
 	}-*/;
 	
 	/**
+	 * Returns a new Blob object containing a full copy of the data in the
+	 * source Blob.
+	 * 
+	 * @return The new Blob object
+	 */
+	public final Blob slice() {
+      return getSliceImpl().slice(this);
+	}
+
+	/**
 	 * Returns a new Blob object containing the data in the specified range of
 	 * bytes of the source Blob.
 	 * 
@@ -64,9 +89,9 @@ public class Blob extends JavaScriptObject {
 	 *            example, -10 would be the 10th from last byte in the Blob).
 	 * @return The new Blob object
 	 */
-	public final native Blob slice(int start) /*-{
-      return this.slice(start);
-	}-*/;
+	public final Blob slice(int start) {
+      return getSliceImpl().slice(this, start);
+	}
 	
 	/**
 	 * Returns a new Blob object containing the data in the specified range of
@@ -84,9 +109,9 @@ public class Blob extends JavaScriptObject {
 	 *            example, -10 would be the 10th from last byte in the Blob).
 	 * @return The new Blob object
 	 */
-	public final native Blob slice(int start, int end) /*-{
-      return this.slice(start, end);
-	}-*/;
+	public final Blob slice(int start, int end) {
+      return getSliceImpl().slice(this, start, end);
+	}
 	
 	/**
 	 * Returns a new Blob object containing the data in the specified range of
@@ -107,9 +132,9 @@ public class Blob extends JavaScriptObject {
 	 *            value of its type property.
 	 * @return The new Blob object
 	 */
-	public final native Blob slice(int start, int end, String contentType) /*-{
-      return this.slice(start, end, contentType);
-	}-*/;
+	public final Blob slice(int start, int end, String contentType) {
+      return getSliceImpl().slice(this, start, end, contentType);
+	}
 
 	/**
 	 * Creates a new object URL, whose lifetime is tied to the document in the

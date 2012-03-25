@@ -7,4 +7,24 @@
 	<source path="file" />
 	<source path="dnd" />
 	<source path="arrays" />
+	
+	<!-- Default implementation -->
+	<replace-with class="org.vectomatic.file.impl.SliceImpl">
+		<when-type-is class="org.vectomatic.file.impl.SliceImpl" />
+	</replace-with>
+    <!-- Mozilla implementation -->
+	<replace-with class="org.vectomatic.file.impl.SliceImplMozilla">
+		<when-type-is class="org.vectomatic.file.impl.SliceImpl" />
+		<any>
+			<when-property-is name="user.agent" value="gecko" />
+			<when-property-is name="user.agent" value="gecko1_8" />
+		</any>
+	</replace-with>
+    <!-- WebKit implementation -->
+	<replace-with class="org.vectomatic.file.impl.SliceImplWebkit">
+		<when-type-is class="org.vectomatic.file.impl.SliceImpl" />
+		<any>
+			<when-property-is name="user.agent" value="safari" />
+		</any>
+	</replace-with>
 </module>
