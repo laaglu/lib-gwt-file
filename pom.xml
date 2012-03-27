@@ -17,9 +17,9 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>http://code.google.com/p/lib-gwt-file/source/browse/#svn/lib-gwt-file/trunk</url>
-		<connection>scm:svn:http://lib-gwt-file.googlecode.com/svn/lib-gwt-file/trunk</connection>
-		<developerConnection>scm:svn:file:///home/laaglu/svn/lib-gwt-file/lib-gwt-file/trunk</developerConnection>
+		<url>scm:git:git@github.com:laaglu/lib-gwt-file.git</url>
+		<connection>scm:git:git@github.com:laaglu/lib-gwt-file.git</connection>
+		<developerConnection>scm:git:git@github.com:laaglu/lib-gwt-file.git</developerConnection>
 	</scm>
 	<dependencies>
 		<dependency>
