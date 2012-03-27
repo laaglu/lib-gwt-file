@@ -4,18 +4,18 @@ import org.vectomatic.file.Blob;
 
 public class SliceImplWebkit extends SliceImpl  {
 	public final native Blob slice(Blob blob) /*-{
-    return blob.webkitSlice();
+    return ('slice' in blob) ? blob.slice() : blob.webkitSlice();
 	}-*/;
 
 	public final native Blob slice(Blob blob, int start) /*-{
-    return blob.webkitSlice(start);
+    return ('slice' in blob) ? blob.slice(start) : blob.webkitSlice(start);
 	}-*/;
 	
 	public final native Blob slice(Blob blob, int start, int end) /*-{
-    return blob.webkitSlice(start, end);
+    return ('slice' in blob) ? blob.slice(start, end) : blob.webkitSlice(start, end);
 	}-*/;
 	
 	public final native Blob slice(Blob blob, int start, int end, String contentType) /*-{
-    return blob.webkitSlice(start, end, contentType);
+    return ('slice' in blob) ? blob.slice(start, end, contentType) : blob.webkitSlice(start, end, contentType);
 	}-*/;
 }
