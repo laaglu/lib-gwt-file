@@ -9,7 +9,7 @@
 	<source path="arrays" />
 	
 	<!-- Default implementation -->
-	<replace-with class="org.vectomatic.file.impl.SliceImpl">
+	<replace-with class="org.vectomatic.file.impl.SliceImplStandard">
 		<when-type-is class="org.vectomatic.file.impl.SliceImpl" />
 	</replace-with>
     <!-- Mozilla implementation -->

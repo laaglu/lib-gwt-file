@@ -2,20 +2,29 @@ package org.vectomatic.file.impl;
 
 import org.vectomatic.file.Blob;
 
-public class SliceImpl {
-	public native Blob slice(Blob blob) /*-{
-    return blob.slice();
-	}-*/;
+public abstract class SliceImpl {
+	public abstract Blob slice(Blob blob);
 	
-	public native Blob slice(Blob blob, int start) /*-{
-    return blob.slice(start);
-	}-*/;
+	public Blob slice(Blob blob, long start) {
+		return slice_(blob, toString(start));
+	}
 	
-	public native Blob slice(Blob blob, int start, int end) /*-{
-    return blob.slice(start, end);
-	}-*/;
+	public Blob slice(Blob blob, long start, long end) {
+		return slice_(blob, toString(start), toString(end));
+	}
 	
-	public native Blob slice(Blob blob, int start, int end, String contentType) /*-{
-    return blob.slice(start, end, contentType);
-	}-*/;
+	public Blob slice(Blob blob, long start, long end, String contentType) {
+		return slice_(blob, toString(start), toString(end), contentType);
+	}
+	
+	static String toString(long l) {
+		if (l > 9007199254740992L) {
+			throw new NumberFormatException();
+		}
+		return Long.toString(l);
+	}
+
+	abstract Blob slice_(Blob blob, String start);
+	abstract Blob slice_(Blob blob, String start, String end);
+	abstract Blob slice_(Blob blob, String start, String end, String contentType);
 }

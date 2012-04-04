@@ -7,15 +7,15 @@ public class SliceImplWebkit extends SliceImpl  {
     return ('slice' in blob) ? blob.slice() : blob.webkitSlice();
 	}-*/;
 
-	public final native Blob slice(Blob blob, int start) /*-{
+	final native Blob slice_(Blob blob, String start) /*-{
     return ('slice' in blob) ? blob.slice(start) : blob.webkitSlice(start);
 	}-*/;
 	
-	public final native Blob slice(Blob blob, int start, int end) /*-{
+	final native Blob slice_(Blob blob, String start, String end) /*-{
     return ('slice' in blob) ? blob.slice(start, end) : blob.webkitSlice(start, end);
 	}-*/;
 	
-	public final native Blob slice(Blob blob, int start, int end, String contentType) /*-{
+	final native Blob slice_(Blob blob, String start, String end, String contentType) /*-{
     return ('slice' in blob) ? blob.slice(start, end, contentType) : blob.webkitSlice(start, end, contentType);
 	}-*/;
 }

@@ -53,9 +53,15 @@ public class Blob extends JavaScriptObject {
 	 * 
 	 * @return The size, in bytes, of the data contained in the Blob object.
 	 */
-	public final native int getSize() /*-{
-      return this.size;
+	public final long getSize() {
+		String size = getSize_();
+		return Long.parseLong(size);
+	}
+	
+	private final native String getSize_() /*-{
+      return "" + this.size;
 	}-*/;
+	
 	
 	/**
 	 * An ASCII-encoded string, in all lower case, indicating the MIME type of
@@ -89,7 +95,7 @@ public class Blob extends JavaScriptObject {
 	 *            example, -10 would be the 10th from last byte in the Blob).
 	 * @return The new Blob object
 	 */
-	public final Blob slice(int start) {
+	public final Blob slice(long start) {
       return getSliceImpl().slice(this, start);
 	}
 	
@@ -109,7 +115,7 @@ public class Blob extends JavaScriptObject {
 	 *            example, -10 would be the 10th from last byte in the Blob).
 	 * @return The new Blob object
 	 */
-	public final Blob slice(int start, int end) {
+	public final Blob slice(long start, long end) {
       return getSliceImpl().slice(this, start, end);
 	}
 	
@@ -132,7 +138,7 @@ public class Blob extends JavaScriptObject {
 	 *            value of its type property.
 	 * @return The new Blob object
 	 */
-	public final Blob slice(int start, int end, String contentType) {
+	public final Blob slice(long start, long end, String contentType) {
       return getSliceImpl().slice(this, start, end, contentType);
 	}
 
