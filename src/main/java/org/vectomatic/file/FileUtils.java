@@ -9,7 +9,7 @@ public class FileUtils {
 	/**
 	 * Returns a base64 encoding of the specified binary string
 	 * @param str
-	 * A binary string (obtained for instance by the FileReader API)
+	 * A binary string (obtained for instance by the FileReader API).
 	 * @return a base64 encoded string.
 	 */
 	public static native String base64encode(String str) /*-{
@@ -17,7 +17,17 @@ public class FileUtils {
 	}-*/;
 
 	/**
-	 * Returns data url with the specified mime type and data 
+	 * Decodes the specified base64 encoded string
+	 * @param str
+	 * A base64 encoded string.
+	 * @return the decoded string.
+	 */
+	private static native String base64decode(String str) /*-{
+	    return $wnd.atob(a);
+	}-*/;
+	
+	/**
+	 * Returns a data url with the specified mime type and data 
 	 * @see http://en.wikipedia.org/wiki/Data_URI_scheme
 	 * @param type
 	 * The mime type to use in the data url.
