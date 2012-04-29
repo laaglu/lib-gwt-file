@@ -27,12 +27,10 @@ public class FileUtils {
 	}-*/;
 	
 	/**
-	 * Returns a data url with the specified mime type and data 
-	 * @see http://en.wikipedia.org/wiki/Data_URI_scheme
-	 * @param type
-	 * The mime type to use in the data url.
-	 * @param data
-	 * A binary string (obtained for instance by the FileReader API)
+	 * Returns a <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data
+	 * url</a> with the specified mime type and data.
+	 * @param type The mime type to use in the data url.
+	 * @param data A binary string (obtained for instance by the FileReader API)
 	 * @return a base64 encoded string.
 	 */
 	public static String createDataUrl(String type, String data) {
