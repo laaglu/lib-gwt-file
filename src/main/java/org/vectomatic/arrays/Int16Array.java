@@ -47,10 +47,10 @@ public class Int16Array extends ArrayBufferView {
     return this.length;
   }-*/;
   public final native short get(int index) /*-{
-    return this.get(index);
+    return this[index];
   }-*/;
   public final native void set(int index, short value) /*-{
-    this.set(index, value);
+    this[index] = value;
   }-*/;
   public final native void set(Int16Array array, int offset) /*-{
     this.set(array, offset);

@@ -47,10 +47,10 @@ public class Int8Array extends ArrayBufferView {
     return this.length;
   }-*/;
   public final native byte get(int index) /*-{
-    return this.get(index);
+    return this[index];
   }-*/;
   public final native void set(int index, byte value) /*-{
-    this.set(index, value);
+    this[index] = value;
   }-*/;
   public final native void set(Int8Array array, int offset) /*-{
     this.set(array, offset);

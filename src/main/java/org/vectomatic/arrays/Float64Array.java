@@ -47,10 +47,10 @@ public class Float64Array extends ArrayBufferView {
     return this.length;
   }-*/;
   public final native float get(int index) /*-{
-    return this.get(index);
+    return this[index];
   }-*/;
   public final native void set(int index, float value) /*-{
-    this.set(index, value);
+    this[index] = value;
   }-*/;
   public final native void set(Float64Array array, int offset) /*-{
     this.set(array, offset);
