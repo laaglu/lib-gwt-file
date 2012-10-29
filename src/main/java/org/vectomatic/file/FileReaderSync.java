@@ -17,9 +17,8 @@
  **********************************************/
 package org.vectomatic.file;
 
-import org.vectomatic.arrays.ArrayBuffer;
-
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.typedarrays.shared.ArrayBuffer;
 
 /**
  * The {@link org.vectomatic.file.FileReaderSync} interface allows to read

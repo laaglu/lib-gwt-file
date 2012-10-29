@@ -17,12 +17,12 @@
  **********************************************/
 package org.vectomatic.file.impl;
 
-import org.vectomatic.arrays.ArrayBuffer;
 import org.vectomatic.file.Blob;
 import org.vectomatic.file.FileError;
 import org.vectomatic.file.FileReader;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.typedarrays.shared.ArrayBuffer;
 
 public class FileReaderImpl extends JavaScriptObject {
 	public static final short EMPTY = 0;

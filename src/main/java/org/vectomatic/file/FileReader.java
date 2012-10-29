@@ -21,7 +21,6 @@
  */
 package org.vectomatic.file;
 
-import org.vectomatic.arrays.ArrayBuffer;
 import org.vectomatic.file.events.AbortEvent;
 import org.vectomatic.file.events.AbortHandler;
 import org.vectomatic.file.events.ErrorEvent;
@@ -49,6 +48,7 @@ import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.typedarrays.shared.ArrayBuffer;
 import com.google.gwt.user.client.Element;
 
 /**
