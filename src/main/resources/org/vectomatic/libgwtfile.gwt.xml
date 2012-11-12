@@ -6,7 +6,6 @@
 	<inherits name='com.google.gwt.xml.XML' />
 	<source path="file" />
 	<source path="dnd" />
-	<source path="arrays" />
 	
 	<!-- Default implementation -->
 	<replace-with class="org.vectomatic.file.impl.SliceImplStandard">
