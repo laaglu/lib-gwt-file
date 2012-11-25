@@ -19,7 +19,10 @@ package org.vectomatic.file;
 
 import org.vectomatic.file.impl.FileListImpl;
 
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.FormElement;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.FileUpload;
 
 /**
@@ -29,7 +32,7 @@ import com.google.gwt.user.client.ui.FileUpload;
 public class FileUploadExt extends FileUpload {
 	/**
 	 * Constructor. This constructors creates instances
-	 * with multiple file support activated by default.
+	 * with multsetEnablediple file support activated by default.
 	 */
 	public FileUploadExt() {
 		this(true);
@@ -40,6 +43,7 @@ public class FileUploadExt extends FileUpload {
 	 */
 	public FileUploadExt(boolean multiple) {
 		super();
+		element2 = super.getElement().cloneNode(true).cast();
 		setMultiple(multiple);
 	}
 	/**
@@ -82,4 +86,24 @@ public class FileUploadExt extends FileUpload {
 	private static final native void click(Element element) /*-{
 	  element.click();
 	}-*/; 
+
+	protected Element element2;
+	
+	@Override
+	public com.google.gwt.user.client.Element getElement() {
+		return (com.google.gwt.user.client.Element) element2;
+	}
+
+	@Override
+	public void onBrowserEvent(Event event) {
+		// Fix webkit bug
+		// input file will not fire change event if one chooses the same file twice in a row
+		super.onBrowserEvent(event);
+		Element parent = element2.getParentElement();
+		Element nextSibling = element2.getNextSiblingElement();
+		FormElement form = Document.get().createFormElement();
+		form.appendChild(element2);
+		form.reset();
+		parent.insertBefore(element2, nextSibling);
+	}
 }
