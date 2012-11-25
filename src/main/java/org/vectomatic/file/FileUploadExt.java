@@ -91,7 +91,7 @@ public class FileUploadExt extends FileUpload {
 	
 	@Override
 	public com.google.gwt.user.client.Element getElement() {
-		return (com.google.gwt.user.client.Element) element2;
+		return element2 == null ? super.getElement() : (com.google.gwt.user.client.Element) element2;
 	}
 
 	@Override
