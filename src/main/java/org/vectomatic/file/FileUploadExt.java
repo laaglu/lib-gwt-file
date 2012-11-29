@@ -22,17 +22,25 @@ import org.vectomatic.file.impl.FileListImpl;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.FormElement;
+import com.google.gwt.dom.client.InputElement;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.HasChangeHandlers;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.ui.FileUpload;
+import com.google.gwt.user.client.ui.HasEnabled;
+import com.google.gwt.user.client.ui.HasName;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
- * FileUpload widget with support for multiple files
+ * FileUpload widget with support for multiple files.
  * @author laaglu
  */
-public class FileUploadExt extends FileUpload {
+public class FileUploadExt extends Widget implements HasName, HasChangeHandlers, HasEnabled {
 	/**
 	 * Constructor. This constructors creates instances
-	 * with multsetEnablediple file support activated by default.
+	 * with multiple file support activated by default.
 	 */
 	public FileUploadExt() {
 		this(true);
@@ -42,10 +50,15 @@ public class FileUploadExt extends FileUpload {
 	 * @param multiple true to active multiple file upload support, false otherwise 
 	 */
 	public FileUploadExt(boolean multiple) {
-		super();
-		element2 = super.getElement().cloneNode(true).cast();
+		this(Document.get().createFileInputElement(), true);
+	}
+	
+	protected FileUploadExt(Element element, boolean multiple) {
+	    setElement(element);
+	    setStyleName("gwt-FileUpload");
 		setMultiple(multiple);
 	}
+	
 	/**
 	 * Returns true if support for multiple file upload is activated, false otherwise.
 	 * @return true if support for multiple file upload is activated
@@ -86,24 +99,92 @@ public class FileUploadExt extends FileUpload {
 	private static final native void click(Element element) /*-{
 	  element.click();
 	}-*/; 
-
-	protected Element element2;
 	
-	@Override
-	public com.google.gwt.user.client.Element getElement() {
-		return element2 == null ? super.getElement() : (com.google.gwt.user.client.Element) element2;
-	}
-
 	@Override
 	public void onBrowserEvent(Event event) {
 		// Fix webkit bug
 		// input file will not fire change event if one chooses the same file twice in a row
 		super.onBrowserEvent(event);
-		Element parent = element2.getParentElement();
-		Element nextSibling = element2.getNextSiblingElement();
+		Element parent = getElement().getParentElement();
+		Element nextSibling = getElement().getNextSiblingElement();
 		FormElement form = Document.get().createFormElement();
-		form.appendChild(element2);
+		form.appendChild(getElement());
 		form.reset();
-		parent.insertBefore(element2, nextSibling);
+		parent.insertBefore(getElement(), nextSibling);
+	}
+	
+	//====================================================
+	//
+	//            Copied from GWT's FileUpload
+	//
+	//====================================================
+	
+	/**
+	 * Creates a FileUploadExt widget that wraps an existing &lt;input
+	 * type='file'&gt; element.
+	 * 
+	 * This element must already be attached to the document. If the element is
+	 * removed from the document, you must call
+	 * {@link RootPanel#detachNow(Widget)}.
+	 * 
+	 * @param element the element to be wrapped
+	 * @param multiple true to active multiple file upload support, false otherwise 
+	 */
+	public static FileUploadExt wrap(Element element, boolean multiple) {
+		// Assert that the element is attached.
+		assert Document.get().getBody().isOrHasChild(element);
+
+		FileUploadExt fileUpload = new FileUploadExt(element, multiple);
+
+		// Mark it attached and remember it for cleanup.
+		fileUpload.onAttach();
+		RootPanel.detachOnWindowClose(fileUpload);
+
+		return fileUpload;
+	}
+	
+	public HandlerRegistration addChangeHandler(ChangeHandler handler) {
+		return addDomHandler(handler, ChangeEvent.getType());
+	}
+
+	/**
+	 * Gets the filename selected by the user. This property has no mutator, as
+	 * browser security restrictions preclude setting it.
+	 * 
+	 * @return the widget's filename
+	 */
+	public String getFilename() {
+		return getInputElement().getValue();
+	}
+
+	public String getName() {
+		return getInputElement().getName();
+	}
+
+	/**
+	 * Gets whether this widget is enabled.
+	 * 
+	 * @return <code>true</code> if the widget is enabled
+	 */
+	public boolean isEnabled() {
+		return !getElement().getPropertyBoolean("disabled");
+	}	
+	/**
+	 * Sets whether this widget is enabled.
+	 * 
+	 * @param enabled
+	 *            <code>true</code> to enable the widget, <code>false</code> to
+	 *            disable it
+	 */
+	public void setEnabled(boolean enabled) {
+		getElement().setPropertyBoolean("disabled", !enabled);
+	}
+
+	public void setName(String name) {
+		getInputElement().setName(name);
+	}
+
+	private InputElement getInputElement() {
+		return getElement().cast();
 	}
 }
