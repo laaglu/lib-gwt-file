@@ -36,4 +36,29 @@ public class FileUtils {
 	public static String createDataUrl(String type, String data) {
 		return "data:" + type + ";base64," + base64encode(data);
 	}
+	
+	/**
+	 * Creates a new object URL, whose lifetime is tied to the document in the
+	 * window on which it was created. The new object URL represents the
+	 * specified Blob object.
+	 * @param blob the blob to represent
+	 * @return a new object URL representing the blob.
+	 */
+	public static final native String createObjectURL(Blob blob) /*-{
+	  return $wnd.URL.createObjectURL(blob);
+	}-*/;
+
+	/**
+	 * Releases an existing object URL which was previously created by calling
+	 * {@link #createObjectURL(org.vectomatic.file.Blob)} . Call this method
+	 * when you've finished using a object URL, in order to let the browser know
+	 * it doesn't need to keep the reference to the file any longer.
+	 * 
+	 * @param url
+	 *            a string representing the object URL that was created by
+	 *            calling {@link #createObjectURL(org.vectomatic.file.Blob)}
+	 */
+	public static final native void revokeObjectURL(String url) /*-{
+	  $wnd.URL.revokeObjectURL(url);
+	}-*/;
 }

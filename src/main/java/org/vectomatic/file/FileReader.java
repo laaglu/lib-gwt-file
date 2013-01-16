@@ -260,7 +260,7 @@ public class FileReader implements HasLoadHandlers, HasLoadStartHandlers, HasLoa
 	 * {@link org.vectomatic.file.FileReader.State#DONE}, and the
 	 * {@link org.vectomatic.file.events.LoadEndEvent} event, if any, will be
 	 * fired. At that time, the {@link #getArrayBufferResult()} provides access to
-	 * an {@link org.vectomatic.arrays.ArrayBuffer} representing the file's data.
+	 * an {@link com.google.gwt.typedarrays.shared.ArrayBuffer} representing the file's data.
 	 * 
 	 * @param fileBlob
 	 *            The DOM {@link org.vectomatic.file.Blob} or

@@ -143,26 +143,17 @@ public class Blob extends JavaScriptObject {
 	}
 
 	/**
-	 * Creates a new object URL, whose lifetime is tied to the document in the
-	 * window on which it was created. The new object URL represents this
-	 * specified Blob object.
-	 * 
-	 * @return a new object URL representing this blob.
+	 * @deprecated Replaced by {@link FileUtils#createObjectURL(org.vectomatic.file.Blob)}
 	 */
+	@Deprecated
 	public final native String createObjectURL() /*-{
 	  return $wnd.URL.createObjectURL(this);
 	}-*/;
 
 	/**
-	 * Releases an existing object URL which was previously created by calling
-	 * {@link #createObjectURL()} . Call this method when you've finished using
-	 * a object URL, in order to let the browser know it doesn't need to keep
-	 * the reference to the file any longer.
-	 * 
-	 * @param url
-	 *            a string representing the object URL that was created by
-	 *            calling {@link #createObjectURL()}
+	 * @deprecated Replaced by {@link FileUtils#revokeObjectURL(java.lang.String)}
 	 */
+	@Deprecated
 	public final native void revokeObjectURL(String url) /*-{
 	  $wnd.URL.revokeObjectURL(url);
 	}-*/;
