@@ -61,4 +61,12 @@ public class FileUtils {
 	public static final native void revokeObjectURL(String url) /*-{
 	  $wnd.URL.revokeObjectURL(url);
 	}-*/;
+	
+	/**
+	 * Tests whether the browser support the W3C File API
+	 * @return true is supported, false otherwise
+	 */
+	public static final native boolean supportsFileAPI() /*-{
+	  return typeof(FileReader) === 'function' && ("files" in DataTransfer.prototype);
+	}-*/;
 }
