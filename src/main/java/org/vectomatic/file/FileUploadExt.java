@@ -50,7 +50,7 @@ public class FileUploadExt extends Widget implements HasName, HasChangeHandlers,
 	 * @param multiple true to active multiple file upload support, false otherwise 
 	 */
 	public FileUploadExt(boolean multiple) {
-		this(Document.get().createFileInputElement(), true);
+		this(Document.get().createFileInputElement(), multiple);
 	}
 	
 	protected FileUploadExt(Element element, boolean multiple) {
