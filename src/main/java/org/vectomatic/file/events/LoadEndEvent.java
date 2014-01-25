@@ -20,7 +20,7 @@ package org.vectomatic.file.events;
 import com.google.gwt.event.dom.client.DomEvent;
 
 /**
- * The loadstart event is triggered when the read request has completed (either in success or failure).
+ * The loadend event is triggered when the read request has completed (either in success or failure).
  */
 public class LoadEndEvent extends ProgressEventBase<LoadEndHandler> {
 	private static final Type<LoadEndHandler> TYPE = new Type<LoadEndHandler>(
