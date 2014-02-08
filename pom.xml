@@ -6,7 +6,7 @@
 		<version>0.4</version>
 	</parent>
 	<artifactId>lib-gwt-file</artifactId>
-	<version>0.3.5-SNAPSHOT</version>
+	<version>0.3.5</version>
 	<name>lib-gwt-file</name>
 	<description>A GWT encapsulation of the W3C File API</description>
 	<url>http://www.vectomatic.org/libs/lib-gwt-file</url>
