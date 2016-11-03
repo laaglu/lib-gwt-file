@@ -6,7 +6,7 @@
 		<version>0.6</version>
 	</parent>
 	<artifactId>lib-gwt-file</artifactId>
-	<version>0.3.7-SNAPSHOT</version>
+	<version>0.3.7</version>
 	<name>lib-gwt-file</name>
 	<description>A GWT encapsulation of the W3C File API</description>
 	<url>http://www.vectomatic.org/libs/lib-gwt-file</url>
@@ -20,7 +20,7 @@
 		<url>scm:git:git://git/lib-gwt-file.git</url>
 		<connection>scm:git:git://git/lib-gwt-file.git</connection>
 		<developerConnection>scm:git:git://git/lib-gwt-file.git</developerConnection>
-	  <tag>HEAD</tag>
+	  <tag>0.3.7</tag>
   </scm>
 	<dependencies>
 		<dependency>
